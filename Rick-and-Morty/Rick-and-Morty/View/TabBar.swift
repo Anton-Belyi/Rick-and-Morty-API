@@ -13,12 +13,13 @@ class TabBar: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+// Default parameters
         view.backgroundColor = .systemBackground
         UITabBar.appearance().barTintColor = .systemBackground
         tabBar.tintColor = .label
         setupVCs()
     }
-    
+// Created 3 VC
     func setupVCs() {
         viewControllers = [
             createNavController(for: CharactersVC(), tittle: NSLocalizedString("All characters", comment: ""), image: UIImage(systemName: "person.3.fill")!),
