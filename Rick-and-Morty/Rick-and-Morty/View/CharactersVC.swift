@@ -7,9 +7,10 @@
 
 import UIKit
 
-class MainVC: UIViewController {
+class CharactersVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .orange
     }
 }

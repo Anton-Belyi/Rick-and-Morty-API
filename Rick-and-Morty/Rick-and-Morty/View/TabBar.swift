@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - NavigationController
+// MARK: - TabBar
 
 class TabBar: UITabBarController {
     
@@ -21,9 +21,9 @@ class TabBar: UITabBarController {
     
     func setupVCs() {
         viewControllers = [
-            createNavController(for: MainVC(), tittle: NSLocalizedString("All characters", comment: ""), image: UIImage(systemName: "person.3.fill")!),
-            createNavController(for: MainVC(), tittle: NSLocalizedString("All episodes", comment: ""), image: UIImage(systemName: "play.tv.fill")!),
-            createNavController(for: MainVC(), tittle: NSLocalizedString("Search", comment: ""), image: UIImage(systemName: "magnifyingglass")!)
+            createNavController(for: CharactersVC(), tittle: NSLocalizedString("All characters", comment: ""), image: UIImage(systemName: "person.3.fill")!),
+            createNavController(for: EpisodesVC(), tittle: NSLocalizedString("All episodes", comment: ""), image: UIImage(systemName: "play.tv.fill")!),
+            createNavController(for: SearchVC(), tittle: NSLocalizedString("Search", comment: ""), image: UIImage(systemName: "magnifyingglass")!)
         ]
     }
     fileprivate func createNavController(for rootViewController: UIViewController, tittle: String, image: UIImage) -> UIViewController {
