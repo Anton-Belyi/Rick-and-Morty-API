@@ -8,10 +8,8 @@
 import UIKit
 
 class CharactersCollectionViewCell: UICollectionViewCell {
-    static let idCell = "CharactersCollectionViewCell"
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
     }
     
     required init?(coder: NSCoder) {
