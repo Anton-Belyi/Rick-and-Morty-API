@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A14ADF7263DBBF80077E4FB /* HeaderCharactersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A14ADF6263DBBF80077E4FB /* HeaderCharactersVC.swift */; };
 		3A155B932624D9B600362228 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A155B922624D9B600362228 /* AppDelegate.swift */; };
 		3A155B952624D9B600362228 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A155B942624D9B600362228 /* SceneDelegate.swift */; };
 		3A155B9C2624D9B700362228 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A155B9B2624D9B700362228 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A14ADF6263DBBF80077E4FB /* HeaderCharactersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCharactersVC.swift; sourceTree = "<group>"; };
 		3A155B8F2624D9B600362228 /* Rick-and-Morty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rick-and-Morty.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A155B922624D9B600362228 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A155B942624D9B600362228 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				3ADB1DAA262585EF005F94BE /* CharactersVC.swift */,
+				3A14ADF6263DBBF80077E4FB /* HeaderCharactersVC.swift */,
 				3AC09F26262E048C00BD5137 /* CharactersCollectionViewCell.swift */,
 			);
 			path = CharactersVC;
@@ -175,6 +178,7 @@
 				3AD7C7B42627725D0068D971 /* SearchVC.swift in Sources */,
 				3ADB1DA426257B9A005F94BE /* TabBar.swift in Sources */,
 				3AD7C7AF26276FD20068D971 /* EpisodesVC.swift in Sources */,
+				3A14ADF7263DBBF80077E4FB /* HeaderCharactersVC.swift in Sources */,
 				3A736647262C381D000EBCB4 /* CharactersJson.swift in Sources */,
 				3AC09F27262E048C00BD5137 /* CharactersCollectionViewCell.swift in Sources */,
 				3A155B932624D9B600362228 /* AppDelegate.swift in Sources */,
