@@ -36,23 +36,6 @@ class HeaderCharactersVC: UICollectionReusableView {
                                         self.imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
                                         self.imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)])
     }
-    
-//    private let headerImage: UIImageView = {
-//        let iv = UIImageView(image: #imageLiteral(resourceName: "CharactersHeader"))
-//        iv.contentMode = .scaleAspectFill
-//        iv.clipsToBounds = true
-//        return iv
-//    }()
-//
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        addSubview(headerImage)
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
 }
 
 
