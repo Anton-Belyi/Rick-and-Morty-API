@@ -13,15 +13,27 @@ class CharactersVC: UICollectionViewController, UICollectionViewDelegateFlowLayo
     let headerId = "header"
         
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 40
+        return 20
     }
 
-    
+    // MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
+    //Registr CollectionView
+        
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+       
         self.collectionView.register(HeaderCharactersVC.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
+        
+    // Layout custom
+        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.sectionInset = .init(top: 15, left: 15, bottom: 15, right: 15)
+            layout.minimumLineSpacing = 15
+        }
+        
     }
     
     // initialized with a non-nil layout parameter
@@ -31,8 +43,10 @@ class CharactersVC: UICollectionViewController, UICollectionViewDelegateFlowLayo
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    // MARK: CollectionViewLayout
     
-    // Cell
+    
+    // MARK: Cell
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
@@ -41,20 +55,10 @@ class CharactersVC: UICollectionViewController, UICollectionViewDelegateFlowLayo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let widthCell = collectionView.bounds.width / 2.1
-        let heightCell = collectionView.bounds.height / 5
+        let widthCell = collectionView.bounds.width / 2.3
+        let heightCell = collectionView.bounds.height / 5.1
         return CGSize.init(width: widthCell, height: heightCell)
     }
-    
-    // Header
-    
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
-        return header
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .init(width: view.frame.width, height: 200)
-    }
-
 }
+
+

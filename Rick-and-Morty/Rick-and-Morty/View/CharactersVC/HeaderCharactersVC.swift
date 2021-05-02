@@ -8,12 +8,51 @@
 import UIKit
 
 class HeaderCharactersVC: UICollectionReusableView {
+    
+    var imageView: UIImageView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+
+       
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func createView() {
+        imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        self.addSubview(imageView)
+    }
+
+    func setVieConstraints() {
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+                                        self.imageView.topAnchor.constraint(equalTo: self.topAnchor),
+                                        self.imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+                                        self.imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+                                        self.imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)])
+    }
+    
+//    private let headerImage: UIImageView = {
+//        let iv = UIImageView(image: #imageLiteral(resourceName: "CharactersHeader"))
+//        iv.contentMode = .scaleAspectFill
+//        iv.clipsToBounds = true
+//        return iv
+//    }()
+//
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        addSubview(headerImage)
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
 }
+
+
