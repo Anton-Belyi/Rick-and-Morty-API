@@ -41,6 +41,6 @@ class TabBar: UITabBarController {
             items[i].image = UIImage(named: images[i])
         }
         // Назначение цвета кнопкам TabBar
-        self.tabBar.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        self.tabBar.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
 }

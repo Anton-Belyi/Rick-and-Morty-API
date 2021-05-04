@@ -9,7 +9,7 @@ import UIKit
 
 // Эластичный заголовок таблици
 
-final class EpisodesHeader: UIView {
+final class EpisodesHeaderTable: UIView {
     public let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
