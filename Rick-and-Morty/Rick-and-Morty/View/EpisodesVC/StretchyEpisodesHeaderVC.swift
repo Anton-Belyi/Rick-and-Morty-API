@@ -1,5 +1,5 @@
 //
-//  EpisodesHeader.swift
+//  StretchyEpisodesHeaderVC.swift
 //  Rick-and-Morty
 //
 //  Created by Антон Белый on 04.05.2021.
@@ -7,50 +7,52 @@
 
 import UIKit
 
-// Эластичный заголовок таблици
-
-final class EpisodesHeaderTable: UIView {
-    public let imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
+final class StretchyEpisodesHeaderVC: UIView {
     
-    private var imageViewHeight = NSLayoutConstraint()
-    private var imageViewBottom = NSLayoutConstraint()
-    private var containerView = UIView()
-    private var containerViewHeight = NSLayoutConstraint()
+    var imageViewHeight = NSLayoutConstraint()
+    var imageViewBottom = NSLayoutConstraint()
+    
+    var containerView: UIView!
+    var imageView: UIImageView!
+    
+    var containerViewHeight = NSLayoutConstraint()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        createView()
+        setViewConstraints()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
-    // Создание subView
-    private func createView() {
-        addSubview(containerView)
+    func createView() {
+        //View контейнера
+        containerView = UIView()
+        self.addSubview(containerView)
+        //ImageView для фона
+        imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.backgroundColor = .black
+        imageView.contentMode = .scaleAspectFit
         containerView.addSubview(imageView)
     }
-    // Установка констреинтов для view
     
     func setViewConstraints() {
+        //Констрейнты для UIView
         NSLayoutConstraint.activate([
-            widthAnchor.constraint(equalTo: containerView.widthAnchor),
-            centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            heightAnchor.constraint(equalTo: containerView.heightAnchor)
+            self.widthAnchor.constraint(equalTo: containerView.widthAnchor),
+            self.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            self.heightAnchor.constraint(equalTo: containerView.heightAnchor)
         ])
-        
+        //Констрейнты для ContainerView
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        
         containerView.widthAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
         containerViewHeight = containerView.heightAnchor.constraint(equalTo: self.heightAnchor)
         containerViewHeight.isActive = true
         
+        //Констрейнты для ImageView
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageViewBottom = imageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
         imageViewBottom.isActive = true
@@ -58,14 +60,13 @@ final class EpisodesHeaderTable: UIView {
         imageViewHeight.isActive = true
     }
     
-    // Уведомление об изменении прокрутки из контейнера
-    
-    public func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
         containerViewHeight.constant = scrollView.contentInset.top
         let offsetY = -(scrollView.contentOffset.y + scrollView.contentInset.top)
         containerView.clipsToBounds = offsetY <= 0
         imageViewBottom.constant = offsetY >= 0 ? 0 : -offsetY / 2
         imageViewHeight.constant = max(offsetY + scrollView.contentInset.top, scrollView.contentInset.top)
     }
+    
 }
 

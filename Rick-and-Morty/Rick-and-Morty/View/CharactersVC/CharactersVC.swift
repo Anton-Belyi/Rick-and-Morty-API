@@ -7,68 +7,61 @@
 
 import UIKit
 
-class CharactersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CharactersVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    let example = [
-        "Primer 1",
-        "Primer 2",
-        "Primer 3",
-        "Primer 4",
-        "Primer 5",
-        "Primer 6",
-        "Primer 7",
-        "Primer 8",
-        "Primer 9",
-        "Primer 10",
-        "Primer 11",
-        "Primer 12",
-        "Primer 13",
-        "Primer 14",
-        "Primer 15",
-        "Primer 16",
-        "Primer 17",
-        "Primer 18",
-        "Primer 19",
-        "Primer 20",
-        "Primer 21",
-        
-    ]
-    // Создаем TableView
-    private let tableView: UITableView = {
-       let tableView = UITableView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        return tableView
-    }()
+    let flowLayout = CollectionViewFlowLayout()
+    
+    private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(tableView)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.frame = view.bounds
-        //Настраиваем Header
-        let headerView = StretchyHeaderCharactersVC(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 250))
-        headerView.imageView.image = UIImage(named: "morty")
-        self.tableView.tableHeaderView = headerView
+        // Настройка ячеек
+        flowLayout.scrollDirection = .vertical
+        flowLayout.itemSize = CGSize(width: 150, height: 150)
+        flowLayout.minimumLineSpacing = 35.0
+        flowLayout.sectionInset = UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25)
+        collectionView.collectionViewLayout = flowLayout
+        // Регистрация Header
+        collectionView.register(CharactersStretchyHeaderCharacters.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView")
+        // Регистрация Cell
+        collectionView.register(CharactersCollectionViewCell.self, forCellWithReuseIdentifier: CharactersCollectionViewCell.identifier)
+        // Настройка CollectionView
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        view.addSubview(collectionView)
+        //
+    }
+    // Переиспользование Header
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView", for: indexPath) as? CharactersStretchyHeaderCharacters {
+            // Добавляем изображение в Header
+            headerView.imageView.image = #imageLiteral(resourceName: "charactersheader")
+            return headerView
+        }
+        return UICollectionReusableView()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return example.count
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView.frame = view.bounds
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = example[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 45
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharactersCollectionViewCell.identifier, for: indexPath)
+        cell.layer.cornerRadius = 10
+
         return cell
     }
     
+    
 }
-
-extension CharactersVC: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let headerView = self.tableView.tableHeaderView as! StretchyHeaderCharactersVC
-        headerView.scrollViewDidScroll(scrollView: scrollView)
+// Подключаем Header
+extension CharactersVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: self.collectionView.frame.size.width, height: 250)
     }
 }
-
-

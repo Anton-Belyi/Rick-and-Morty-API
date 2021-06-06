@@ -8,27 +8,37 @@
 import UIKit
 
 class EpisodesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    private let tableView: UITableView = {
-        let tableView = UITableView()
+    
+    let example = [
+        "Episode 1",
+        "Episode 2",
+        "Episode 3",
+        "Episode 4",
+        "Episode 5",
+        "Episode 6",
+        "Episode 7",
+        "Episode 8",
+        "Episode 9",
+        "Episode 10",
+        "Episode 11",
+        "Episode 12",
+        "Episode 13",
+        "Episode 14",
+        "Episode 15",
+        "Episode 16",
+        "Episode 17",
+        "Episode 18",
+        "Episode 19",
+        "Episode 20",
+        "Episode 21",
+        
+    ]
+//     Создаем TableView
+    let tableView: UITableView = {
+       let tableView = UITableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
         return tableView
     }()
-    
-    let episodes = ["Rick",
-                   "Morty",
-                   "Rick",
-                   "Rick",
-                   "Morty",
-                   "Rick",
-                   "Morty",
-                   "Rick",
-                   "Morty",
-                   "Rick",
-                   "Morty",
-                   "Morty",
-    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,21 +46,34 @@ class EpisodesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.frame = view.bounds
-        // Добавляем Header
-        let header = EpisodesHeaderTable(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.width ))
-        header.imageView.image = UIImage(named: "ufo")
-        tableView.tableHeaderView = header
+        //Настраиваем Header
+        let headerView = StretchyEpisodesHeaderVC(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 250))
+        headerView.imageView.image = UIImage(named: "charactersheader")
+        self.tableView.tableHeaderView = headerView
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return episodes.count
+        return example.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = episodes[indexPath.row]
-        cell.backgroundColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
-        cell.textLabel?.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        cell.textLabel?.text = example[indexPath.row]
         return cell
     }
-
+    
 }
+
+extension EpisodesVC: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let headerView = self.tableView.tableHeaderView as! StretchyEpisodesHeaderVC
+        headerView.scrollViewDidScroll(scrollView: scrollView)
+    }
+}
+
+
+//extension CharactersVC: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        return CGSize(width: self.collectionView.frame.size.width, height: 250)
+//    }
+//}
