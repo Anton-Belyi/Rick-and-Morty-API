@@ -36,8 +36,8 @@ class EpisodesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let episode = episodes[indexPath.row]
-        cell.textLabel?.text = episodes.n
+//        let episode = episodes[indexPath.row]
+//        cell.textLabel?.text = episodes.n
         return cell
     }
     

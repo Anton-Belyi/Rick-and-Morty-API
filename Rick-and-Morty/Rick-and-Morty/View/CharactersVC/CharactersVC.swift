@@ -30,6 +30,7 @@ class CharactersVC: UIViewController, UICollectionViewDelegate, UICollectionView
         collectionView.dataSource = self
         view.addSubview(collectionView)
         //
+
     }
     // Переиспользование Header
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -56,8 +57,6 @@ class CharactersVC: UIViewController, UICollectionViewDelegate, UICollectionView
 
         return cell
     }
-    
-    
 }
 // Подключаем Header
 extension CharactersVC: UICollectionViewDelegateFlowLayout {
@@ -65,3 +64,6 @@ extension CharactersVC: UICollectionViewDelegateFlowLayout {
         return CGSize(width: self.collectionView.frame.size.width, height: 250)
     }
 }
+
+
+
