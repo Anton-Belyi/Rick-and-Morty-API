@@ -8,6 +8,7 @@
 import UIKit
 class EpisodesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var nameEpisode: String = ""
     
 //     Создаем TableView
     let tableView: UITableView = {
@@ -15,7 +16,7 @@ class EpisodesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
     }()
-    
+    //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
@@ -27,8 +28,9 @@ class EpisodesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         headerView.imageView.image = UIImage(named: "charactersheader")
         self.tableView.tableHeaderView = headerView
         // Подгружаем JSON
- 
+        getEpisodesJSON()
     }
+    //
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 100
@@ -36,9 +38,25 @@ class EpisodesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
-
+        cell.textLabel?.text = nameEpisode
         return cell
+    }
+    // MARK: ParseJSON
+    func getEpisodesJSON() {
+        let urlString = "https://rickandmortyapi.com/api/episode"
+        guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            do {
+                guard let data = data else { return }
+                let result = try JSONDecoder().decode(EpisodesData.self, from: data)
+                DispatchQueue.main.async {
+                    self.nameEpisode = result.results[0].name
+                    self.tableView.reloadData()
+                }
+            } catch {
+                print(error)
+            }
+        }.resume()
     }
     
 }
@@ -49,5 +67,5 @@ extension EpisodesVC: UIScrollViewDelegate {
         headerView.scrollViewDidScroll(scrollView: scrollView)
     }
     
-
+}
 
