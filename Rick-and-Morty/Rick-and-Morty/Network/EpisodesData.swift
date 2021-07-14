@@ -7,6 +7,7 @@
 
 import UIKit
 
+// Структура для парсинга Эпизодов
 struct EpisodesData: Codable {
     let info: Info
     let results: [Result]
