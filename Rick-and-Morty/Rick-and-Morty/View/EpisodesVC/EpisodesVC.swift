@@ -8,7 +8,7 @@
 import UIKit
 class EpisodesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var nameEpisode: String = ""
+    var nameEpisode = [Result]()
     
 //     Создаем TableView
     let tableView: UITableView = {
@@ -33,39 +33,40 @@ class EpisodesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return nameEpisode.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = nameEpisode
+        cell.textLabel?.text = nameEpisode[indexPath.row].name
         return cell
     }
-    // MARK: ParseJSON
+    
+}
+
+// MARK: StreachHeader
+extension EpisodesVC: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let headerView = self.tableView.tableHeaderView as! StretchyEpisodesHeaderVC
+        headerView.scrollViewDidScroll(scrollView: scrollView)
+    }
+}
+// MARK: ParseJSON
+extension EpisodesVC {
     func getEpisodesJSON() {
         let urlString = "https://rickandmortyapi.com/api/episode"
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { data, response, error in
             do {
                 guard let data = data else { return }
-                let result = try JSONDecoder().decode(EpisodesData.self, from: data)
+                let response = try JSONDecoder().decode(EpisodesData.self, from: data)
                 DispatchQueue.main.async {
-                    self.nameEpisode = result.results[0].name
+                    self.nameEpisode = response.results
                     self.tableView.reloadData()
                 }
             } catch {
-                print(error)
+                print("ERROR IS HERE: \(error)")
             }
         }.resume()
     }
-    
 }
-
-extension EpisodesVC: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let headerView = self.tableView.tableHeaderView as! StretchyEpisodesHeaderVC
-        headerView.scrollViewDidScroll(scrollView: scrollView)
-    }
-    
-}
-
