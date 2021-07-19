@@ -8,6 +8,7 @@
 import UIKit
 class EpisodesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+ 
     var nameEpisode = [Result]()
     
 //     Создаем TableView
@@ -42,7 +43,15 @@ class EpisodesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        // Вызываем EpisodeInfoVC
+        let episodeInfoVC = EpisodeInfoVC()
+        self.present(episodeInfoVC, animated: true, completion: nil)
+    }
+    
 }
+
 
 // MARK: StreachHeader
 extension EpisodesVC: UIScrollViewDelegate {
