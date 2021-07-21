@@ -45,8 +45,10 @@ class EpisodesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        // Вызываем EpisodeInfoVC
+        // Вызываем EpisodeInfoVC и передаем в него данные с tableView
         let episodeInfoVC = EpisodeInfoVC()
+        episodeInfoVC.uiLabel.text = nameEpisode[indexPath.row].name
+        navigationController?.pushViewController(episodeInfoVC, animated: true)
         self.present(episodeInfoVC, animated: true, completion: nil)
     }
     

@@ -7,21 +7,24 @@
 
 import UIKit
 
-class EpisodeInfoVC: UINavigationController {
+class EpisodeInfoVC: UIViewController {
     
-    let uiLabel = UILabel()
-    
+    var uiLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
-    
         
-        uiLabel.text = "Информация о эпизоде"
         view.addSubview(uiLabel)
-        uiLabel.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
-        uiLabel.frame = CGRect(x: 100, y: 100, width: 200, height: 60)
+        uiLabel.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+        uiLabel.font = UIFont(name: "GillSans-SemiBold", size: 18)
+        uiLabel.textAlignment = .center
+        uiLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        uiLabel.layer.cornerRadius = 30
+        uiLabel.layer.masksToBounds = true
+        
+        uiLabel.frame = CGRect(x: 20, y:20, width: 350, height: 60)
         
     }
 }
