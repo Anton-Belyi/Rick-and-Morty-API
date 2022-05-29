@@ -13,6 +13,8 @@ class CharactersVC: UIViewController, UICollectionViewDelegate, UICollectionView
     
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
+    var item: [Result] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Настройка ячеек
@@ -30,7 +32,9 @@ class CharactersVC: UIViewController, UICollectionViewDelegate, UICollectionView
         collectionView.dataSource = self
         view.addSubview(collectionView)
         //
-
+        CharacterResponse.getEpisodesJSON { result in
+            self.item = result.results
+        }
     }
     // Переиспользование Header
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -48,12 +52,17 @@ class CharactersVC: UIViewController, UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 40
+        return item.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharactersCollectionViewCell.identifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharactersCollectionViewCell.identifier, for: indexPath) as! CharactersCollectionViewCell
+        let item = item[indexPath.row].image
+        
+        cell.fill(image: item)
         cell.layer.cornerRadius = 10
+        cell.layer.masksToBounds = true
+
         return cell
     }
 }
@@ -63,8 +72,6 @@ extension CharactersVC: UICollectionViewDelegateFlowLayout {
         return CGSize(width: self.collectionView.frame.size.width, height: 250)
     }
 }
-
-
 
 extension UIImageView {
     func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFit) {

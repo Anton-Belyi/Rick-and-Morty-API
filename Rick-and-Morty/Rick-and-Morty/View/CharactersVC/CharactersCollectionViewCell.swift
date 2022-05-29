@@ -10,7 +10,7 @@ import UIKit
 class CharactersCollectionViewCell: UICollectionViewCell {
     static let identifier = "CharactersCollectionViewCell"
     
-    private let imageView: UIImageView = {
+    private var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
@@ -37,6 +37,10 @@ class CharactersCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
+    }
+    
+    func fill(image: String) {
+        imageView.downloaded(from: image)
     }
 }
 

@@ -29,7 +29,7 @@ class EpisodesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         headerView.imageView.image = UIImage(named: "charactersheader")
         self.tableView.tableHeaderView = headerView
         // Подгружаем JSON
-        getEpisodesJSON()
+//        getEpisodesJSON()
     }
     //
     
@@ -63,21 +63,21 @@ extension EpisodesVC: UIScrollViewDelegate {
     }
 }
 // MARK: ParseJSON
-extension EpisodesVC {
-    func getEpisodesJSON() {
-        let urlString = "https://rickandmortyapi.com/api/episode"
-        guard let url = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            do {
-                guard let data = data else { return }
-                let response = try JSONDecoder().decode(EpisodesData.self, from: data)
-                DispatchQueue.main.async {
-                    self.nameEpisode = response.results
-                    self.tableView.reloadData()
-                }
-            } catch {
-                print("ERROR IS HERE: \(error)")
-            }
-        }.resume()
-    }
-}
+//extension EpisodesVC {
+//    func getEpisodesJSON() {
+//        let urlString = "https://rickandmortyapi.com/api/episode"
+//        guard let url = URL(string: urlString) else { return }
+//        URLSession.shared.dataTask(with: url) { data, response, error in
+//            do {
+//                guard let data = data else { return }
+//                let response = try JSONDecoder().decode(EpisodesData.self, from: data)
+//                DispatchQueue.main.async {
+//                    self.nameEpisode = response.results
+//                    self.tableView.reloadData()
+//                }
+//            } catch {
+//                print("ERROR IS HERE: \(error)")
+//            }
+//        }.resume()
+//    }
+//}
