@@ -107,9 +107,6 @@
 		3A736645262C37F7000EBCB4 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				3AE8D220284390A300C0D70A /* Application */,
-				3AE8D221284390BA00C0D70A /* Model */,
-				3AE8D222284390DC00C0D70A /* ViewController */,
 				3AE8D2232843930100C0D70A /* Networking */,
 				3AE8D21E284381C800C0D70A /* CharacterResponse.swift */,
 			);
@@ -166,50 +163,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		3AE8D220284390A300C0D70A /* Application */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Application;
-			sourceTree = "<group>";
-		};
-		3AE8D221284390BA00C0D70A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		3AE8D222284390DC00C0D70A /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		3AE8D2232843930100C0D70A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				3AE8D2272843940500C0D70A /* Encoding */,
-				3AE8D224284393AD00C0D70A /* EndPoint */,
-				3AE8D225284393BB00C0D70A /* Manager */,
 				3AE8D226284393DE00C0D70A /* Service */,
 			);
 			path = Networking;
-			sourceTree = "<group>";
-		};
-		3AE8D224284393AD00C0D70A /* EndPoint */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = EndPoint;
-			sourceTree = "<group>";
-		};
-		3AE8D225284393BB00C0D70A /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Manager;
 			sourceTree = "<group>";
 		};
 		3AE8D226284393DE00C0D70A /* Service */ = {
